@@ -12,15 +12,24 @@ class _NamePageState extends State<NamePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("hello"),
+        title: const Text("Girl Friends"),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: const Center(
-        child: Text(
-            "This is next page. Click back button to go to previous page."),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text("Silpa"),
+          Text("Anita"),
+          Text("Neelam"),
+          Text("Sabina"),
+          Text("Pooja"),
+          Text("Sabita"),
+          Text("Asmita"),
+          Text("etc."),
+        ],
       ),
     );
   }
