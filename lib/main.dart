@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:nameapp/name.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,27 +15,70 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.green),
       title: 'Welcome to Flutter',
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Suman Family'),
-        ),
-           body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text("Family Name",style: TextStyle(fontWeight: FontWeight.bold, decoration: TextDecoration.underline ),),
-              Text("1.Deepa kumari Neupane"),
-              Text("2.Liladhar Neupane"),
-              Text("3.Tikaram Neupane"),
-              Text("4.Huma kumari Neupane"),
-              Text("5.Laxmi Neupane"),
-              Text("6.Prakash Ghimire"),
-              Text("7.Aarika ghimire"),
-            ]
+      home: const HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Family Name")),
+      body: ListView(
+        children: [
+          const ListTile(
+            title: Text("Deepa Neupane"),
           ),
-        ),
+          ListTile(
+            leading: const Icon(Icons.navigation),
+            title: const Text("Navigation (Click Me)"),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return const NamePage();
+                },
+              ));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.power_input_rounded),
+            title: const Text("Modal Dialog"),
+            onTap: () => showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                title: const Text('Suman'),
+                content: const Text('You clicked Alert Dialog'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                    child: const Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'OK'),
+                    child: const Text('OK'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const ListTile(
+            title: Text("Deepa Neupane"),
+          ),
+          const ListTile(
+            title: Text("Deepa Neupane"),
+          ),
+        ],
       ),
     );
   }
